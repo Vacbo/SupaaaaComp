@@ -10,7 +10,7 @@ struct item {
     int value;
 };
 
-int search(int W, int n, std::vector<item> items, std::vector<std::vector<int> > table, std::vector<std::vector<bool> > &itens_to_keep){
+int search(int W, int n, std::vector<item> &items, std::vector<std::vector<int>> &table, std::vector<std::vector<bool>> &itens_to_keep){
     if (n == 0 || W == 0) {
         return 0;
     }
@@ -37,12 +37,12 @@ int search(int W, int n, std::vector<item> items, std::vector<std::vector<int> >
     return table[n][W];
 }
 
-void findSelectedItems(int W, int n, const std::vector<item>& items, const std::vector<std::vector<bool> >& keep) {
+void findSelectedItems(int W, int n, const std::vector<item> &items, const std::vector<std::vector<bool>> &itens_to_keep) {
     int w = W;
     std::vector<int> selectedItems;
 
     for (int i = n; i > 0; i--) {
-        if (keep[i][w]) {
+        if (itens_to_keep[i][w]) {
             selectedItems.push_back(items[i-1].id);
             w -= items[i-1].weight;
         }
