@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+Profile data file 'callgrind.out.453710' (creator: callgrind-3.22.0)
+--------------------------------------------------------------------------------
+I1 cache: 
+D1 cache: 
+LL cache: 
+Timerange: Basic block 0 - 8339742005
+Trigger: Program termination
+Profiled target:  ./convolucao_O2 (PID 453710, part 1)
+Events recorded:  Ir
+Events shown:     Ir
+Event sort order: Ir
+Thresholds:       99
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir                      
+--------------------------------------------------------------------------------
+34,326,770,566 (100.0%)  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir                       file:function
+--------------------------------------------------------------------------------
+33,176,010,800 (96.65%)  ???:apply_filter(int, int, int (*) [1000], int (*) [5]) [/home/pedrobp/SupaaaaComp/atv-05/convolucao_O2]
+   902,362,499 ( 2.63%)  ???:main [/home/pedrobp/SupaaaaComp/atv-05/convolucao_O2]
+

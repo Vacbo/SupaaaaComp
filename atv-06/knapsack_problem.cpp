@@ -79,7 +79,7 @@ int main(){
 
     // Compute the result using the search function
     int result = search(W, n, items, table, itens_to_keep);
-    std::printf("%d\n", result);
+    std::printf("Maximum value: %d\n", result);
 
     // Find the selected items
     findSelectedItems(W, n, items, itens_to_keep);
