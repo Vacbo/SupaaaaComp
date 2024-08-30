@@ -1,0 +1,10 @@
+Maximum value: 10
+Elapsed time: 0.000020 seconds
+Maximum value: 25
+Elapsed time: 0.000018 seconds
+Maximum value: 10
+Elapsed time: 0.000017 seconds
+Maximum value: 5
+Elapsed time: 0.000018 seconds
+Maximum value: 50
+Elapsed time: 0.000017 seconds
