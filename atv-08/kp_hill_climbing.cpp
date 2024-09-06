@@ -1,9 +1,12 @@
 #include <vector>
 #include <cstdio>
 #include <iostream>
-#include <cstdlib> // For random generation
+#include <cstdlib>
+#include <chrono>
 #include <ctime>
 #include <algorithm>
+#include <unistd.h>
+#include <sys/types.h>
 
 struct item {
     int id;
@@ -12,65 +15,54 @@ struct item {
 };
 
 // Function to generate a valid random solution
-std::vector<bool> generateRandomSolution(const std::vector<item> &items, int maxWeight, int &currentWeight) {
+std::vector<bool> generateRandomSolution(const std::vector<item> &items, int maxWeight, int &currentWeight, int &currentValue) {
     std::vector<bool> solution(items.size(), false);
     currentWeight = 0;
+    currentValue = 0;
+    
     for (int i = 0; i < items.size(); ++i) {
         if ((rand() % 2 == 1) && (currentWeight + items[i].weight <= maxWeight)) {
             solution[i] = true;
             currentWeight += items[i].weight;
+            currentValue += items[i].value;
         }
     }
     return solution;
 }
 
-// Function to evaluate the value of a solution and ensure it respects the weight limit
-int evaluateSolution(const std::vector<item> &items, const std::vector<bool> &solution, int maxWeight, int &currentWeight) {
-    int totalValue = 0;
-    currentWeight = 0;
-    for (int i = 0; i < items.size(); ++i) {
-        if (solution[i]) {
-            currentWeight += items[i].weight;
-            totalValue += items[i].value;
-        }
-    }
-    if (currentWeight > maxWeight) {
-        return -1; // Invalid solution
-    }
-    return totalValue;
-}
-
-// Function to generate neighbors by flipping one bit at a time
-std::vector<std::vector<bool>> generateNeighbors(const std::vector<bool> &solution) {
-    std::vector<std::vector<bool>> neighbors;
-    for (int i = 0; i < solution.size(); ++i) {
-        std::vector<bool> neighbor = solution;
-        neighbor[i] = !neighbor[i];  // Flip the bit
-        neighbors.push_back(neighbor);
-    }
-    return neighbors;
-}
-
-// Hill Climbing algorithm
-int hillClimbing(std::vector<item> &items, std::vector<bool> &solution, int maxWeight, int &currentWeight) {
+// Optimized Hill Climbing algorithm
+int hillClimbing(std::vector<item> &items, std::vector<bool> &solution, int maxWeight, int &currentWeight, int &currentValue) {
     bool improvement = true;
-    int currentValue = evaluateSolution(items, solution, maxWeight, currentWeight);
 
     // Keep improving until no better neighbor is found
     while (improvement) {
         improvement = false;
-        std::vector<std::vector<bool>> neighbors = generateNeighbors(solution);
 
-        // Iterate through each neighbor and find the best one
-        for (const auto &neighbor : neighbors) {
-            int neighborWeight;
-            int neighborValue = evaluateSolution(items, neighbor, maxWeight, neighborWeight);
+        // Iterate through each item, flipping one bit at a time
+        for (int i = 0; i < items.size(); ++i) {
+            // Try flipping the bit at position i (toggle inclusion of the item)
+            bool wasSelected = solution[i];
+            int newWeight = currentWeight;
+            int newValue = currentValue;
 
-            if (neighborValue > currentValue) {
-                // Move to the better neighbor
-                solution = neighbor;
-                currentWeight = neighborWeight;
-                currentValue = neighborValue;
+            if (wasSelected) {
+                // If the item was selected, we are removing it
+                newWeight -= items[i].weight;
+                newValue -= items[i].value;
+            } else if (currentWeight + items[i].weight <= maxWeight) {
+                // If the item wasn't selected, try adding it
+                newWeight += items[i].weight;
+                newValue += items[i].value;
+            } else {
+                // Skip if adding the item exceeds max weight
+                continue;
+            }
+
+            // If the new solution is better, accept it
+            if (newValue > currentValue) {
+                solution[i] = !wasSelected;  // Flip the bit
+                currentWeight = newWeight;
+                currentValue = newValue;
                 improvement = true;
                 break;  // Restart with the new solution
             }
@@ -80,6 +72,7 @@ int hillClimbing(std::vector<item> &items, std::vector<bool> &solution, int maxW
     return currentValue;
 }
 
+// Print the selected items in the solution
 void printSelectedItems(const std::vector<item> &items, const std::vector<bool> &solution) {
     std::cout << "Selected items: ";
     for (int i = 0; i < solution.size(); ++i) {
@@ -92,7 +85,7 @@ void printSelectedItems(const std::vector<item> &items, const std::vector<bool> 
 
 int main() {
     // Seed for random number generation
-    srand(time(0));
+    srand(time(0) + getpid());
 
     // Start measuring time
     auto start = std::chrono::high_resolution_clock::now();
@@ -108,15 +101,18 @@ int main() {
         std::scanf("%d %d", &items[i].weight, &items[i].value);
     }
 
+    // Variables to store the current solution
+    int currentWeight = 0;
+    int currentValue = 0;
+    
     // Step 1: Generate an initial random solution
-    int currentWeight;
-    std::vector<bool> solution = generateRandomSolution(items, W, currentWeight);
+    std::vector<bool> solution = generateRandomSolution(items, W, currentWeight, currentValue);
 
     // Step 2: Apply the Hill Climbing algorithm
-    int bestValue = hillClimbing(items, solution, W, currentWeight);
+    int bestValue = hillClimbing(items, solution, W, currentWeight, currentValue);
 
     // Output the final solution
-    std::printf("Best solution value: %d\n", bestValue);
+    std::printf("Optimized random solution value: %d\n", bestValue);
     printSelectedItems(items, solution);
 
     // Stop measuring time

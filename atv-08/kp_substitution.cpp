@@ -3,41 +3,49 @@
 #include <algorithm>
 #include <chrono>
 #include <iostream>
-#include <cstdlib> // For random generation
+#include <cstdlib>
 #include <ctime>
+#include <unistd.h>  
+#include <random>    
 
+// Structure for an item
 struct item {
     int id;
     int weight;
     int value;
 };
 
-// Function to generate a valid random solution
-std::vector<bool> generateValidRandomSolution(const std::vector<item> &items, int maxWeight, int &currentWeight) {
+// Function to generate a valid random solution without exceeding the weight limit
+std::vector<bool> generateValidRandomSolution(const std::vector<item> &items, int maxWeight, int &totalWeight, int &totalValue) {
     std::vector<bool> solution(items.size(), false);
-    currentWeight = 0;
-    for (int i = 0; i < items.size(); ++i) {
-        if ((rand() % 2 == 1) && (currentWeight + items[i].weight <= maxWeight)) {
-            solution[i] = true;
-            currentWeight += items[i].weight;
-        }
-    }
-    return solution;
-}
+    totalWeight = 0;
+    totalValue = 0;
 
-// Function to evaluate the current value of the solution
-int evaluateSolution(const std::vector<item> &items, const std::vector<bool> &solution) {
-    int totalValue = 0;
+    // Create an index vector for shuffling
+    std::vector<int> indices(items.size());
     for (int i = 0; i < items.size(); ++i) {
-        if (solution[i]) {
+        indices[i] = i;
+    }
+
+    // Shuffle the item indices to simulate randomness
+    std::random_device rd;
+    std::mt19937 gen(rd()); // Seed the random number generator
+    std::shuffle(indices.begin(), indices.end(), gen); // Shuffle with mt19937
+
+    // Try to add items to the knapsack until the weight limit is reached
+    for (int i : indices) {
+        if (totalWeight + items[i].weight <= maxWeight) {
+            solution[i] = true;  // Select the item
+            totalWeight += items[i].weight;
             totalValue += items[i].value;
         }
     }
-    return totalValue;
+
+    return solution;  // Return the valid solution
 }
 
 // Function to perform "Mochila Cheia" - Try adding more items to fill the knapsack if possible
-int mochilaCheia(std::vector<item> &items, std::vector<bool> &solution, int maxWeight, int &currentWeight, int currentValue) {
+int mochilaCheia(const std::vector<item> &items, std::vector<bool> &solution, int maxWeight, int &currentWeight, int currentValue) {
     for (int i = 0; i < items.size(); ++i) {
         if (!solution[i] && currentWeight + items[i].weight <= maxWeight) {
             solution[i] = true;
@@ -48,50 +56,58 @@ int mochilaCheia(std::vector<item> &items, std::vector<bool> &solution, int maxW
     return currentValue;
 }
 
-// Function to perform item substitution
+// Function to perform optimized item substitution
 int performItemSubstitution(std::vector<item> &items, std::vector<bool> &solution, int maxWeight, int &currentWeight, int currentValue) {
     bool improvementMade = true;
+
+    // Track selected and unselected items
+    std::vector<int> selectedItems, unselectedItems;
+    for (int i = 0; i < items.size(); ++i) {
+        if (solution[i]) selectedItems.push_back(i);  // Track selected items
+        else unselectedItems.push_back(i);  // Track unselected items
+    }
 
     // Iterate until no more improvements can be made
     while (improvementMade) {
         improvementMade = false;  // Reset the flag
 
         // Try to substitute each selected item with an unselected one
-        for (int i = 0; i < items.size(); ++i) {
-            if (solution[i]) {  // Only consider selected items for substitution
-                for (int j = 0; j < items.size(); ++j) {
-                    if (!solution[j]) {  // Try replacing with unselected items
-                        int newWeight = currentWeight - items[i].weight + items[j].weight;
-                        if (newWeight <= maxWeight) {  // Check if the new item fits within the capacity
-                            int newValue = currentValue - items[i].value + items[j].value;
-                            if (newValue > currentValue) {  // Check if the substitution improves the value
-                                // Perform the substitution
-                                solution[i] = false;
-                                solution[j] = true;
-                                currentWeight = newWeight;  // Update weight
-                                currentValue = newValue;    // Update value
-                                improvementMade = true;     // Mark that we made an improvement
+        for (int sel : selectedItems) {
+            for (int unsel : unselectedItems) {
+                int newWeight = currentWeight - items[sel].weight + items[unsel].weight;
+                if (newWeight <= maxWeight) {  // Check if the substitution fits the knapsack
+                    int newValue = currentValue - items[sel].value + items[unsel].value;
+                    if (newValue > currentValue) {  // If substitution improves the value
+                        // Perform the substitution
+                        solution[sel] = false;
+                        solution[unsel] = true;
+                        currentWeight = newWeight;
+                        currentValue = newValue;
+                        improvementMade = true;
 
-                                // After substitution, repeat from "Mochila Cheia" step
-                                currentValue = mochilaCheia(items, solution, maxWeight, currentWeight, currentValue);
-                                break;  // Restart from the first item
-                            }
-                        }
+                        // Reorganize the selected and unselected lists
+                        selectedItems.push_back(unsel);
+                        selectedItems.erase(std::remove(selectedItems.begin(), selectedItems.end(), sel), selectedItems.end());
+                        unselectedItems.push_back(sel);
+                        unselectedItems.erase(std::remove(unselectedItems.begin(), unselectedItems.end(), unsel), unselectedItems.end());
+
+                        break;  // Break early since an improvement was made
                     }
                 }
             }
-            if (improvementMade) break;  // If an improvement was made, restart from step 2
+            if (improvementMade) break;  // Restart if an improvement is found
         }
     }
 
     return currentValue;
 }
 
+// Function to display the selected items
 void findSelectedItemsRandom(const std::vector<item> &items, const std::vector<bool> &solution) {
     std::cout << "Selected items: ";
     for (int i = 0; i < solution.size(); ++i) {
         if (solution[i]) {
-            std::cout << items[i].id << " "; // Print item IDs that are included
+            std::cout << items[i].id << " ";  // Print the selected item IDs
         }
     }
     std::cout << std::endl;
@@ -99,7 +115,7 @@ void findSelectedItemsRandom(const std::vector<item> &items, const std::vector<b
 
 int main() {
     // Seed for random number generation
-    srand(time(0));
+    srand(time(0) + getpid());
 
     // Start measuring time
     auto start = std::chrono::high_resolution_clock::now();
@@ -110,26 +126,26 @@ int main() {
 
     // Read input for items
     std::vector<item> items(n);
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; ++i) {
         items[i].id = i;
         std::scanf("%d %d", &items[i].weight, &items[i].value);
     }
 
     // Variables to store the random solution
     std::vector<bool> randomSolution;
-    int randomValue, totalWeight = 0;
+    int totalWeight = 0, totalValue = 0;
 
     // Step 1: Generate a random solution
-    randomSolution = generateValidRandomSolution(items, W, totalWeight);
+    randomSolution = generateValidRandomSolution(items, W, totalWeight, totalValue);
 
     // Step 2: Execute "Mochila Cheia" to fill the knapsack as much as possible
-    randomValue = mochilaCheia(items, randomSolution, W, totalWeight, evaluateSolution(items, randomSolution));
+    totalValue = mochilaCheia(items, randomSolution, W, totalWeight, totalValue);
 
-    // Steps 3 to 6: Perform item substitution to improve the solution
-    randomValue = performItemSubstitution(items, randomSolution, W, totalWeight, randomValue);
+    // Step 3: Perform item substitution to improve the solution
+    totalValue = performItemSubstitution(items, randomSolution, W, totalWeight, totalValue);
 
     // Output the valid and optimized random solution
-    std::printf("Optimized random solution value: %d\n", randomValue);
+    std::printf("Optimized random solution value: %d\n", totalValue);
     findSelectedItemsRandom(items, randomSolution);
 
     // Stop measuring time

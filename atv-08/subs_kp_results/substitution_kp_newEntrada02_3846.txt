@@ -1,0 +1,30 @@
+Optimized random solution value: 327
+Selected items: 6 40 53 56 73 
+Elapsed time: 0.000040 seconds
+Optimized random solution value: 452
+Selected items: 6 19 40 53 56 73 74 
+Elapsed time: 0.000035 seconds
+Optimized random solution value: 513
+Selected items: 6 19 40 53 56 61 73 74 
+Elapsed time: 0.000047 seconds
+Optimized random solution value: 327
+Selected items: 6 40 53 56 73 
+Elapsed time: 0.000044 seconds
+Optimized random solution value: 569
+Selected items: 6 19 26 33 40 53 56 61 74 
+Elapsed time: 0.000037 seconds
+Optimized random solution value: 390
+Selected items: 6 40 53 56 73 74 
+Elapsed time: 0.000060 seconds
+Optimized random solution value: 390
+Selected items: 6 40 53 56 73 74 
+Elapsed time: 0.000039 seconds
+Optimized random solution value: 390
+Selected items: 6 40 53 56 73 74 
+Elapsed time: 0.000040 seconds
+Optimized random solution value: 390
+Selected items: 6 40 53 56 73 74 
+Elapsed time: 0.000051 seconds
+Optimized random solution value: 513
+Selected items: 6 19 40 53 56 61 73 74 
+Elapsed time: 0.000045 seconds
