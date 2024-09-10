@@ -1,0 +1,6 @@
+Total value: 14
+
+Items in the Knapsack:
+0 1 2 3 
+
+Elapsed time: 0.000013 seconds
