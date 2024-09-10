@@ -1,19 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=subs_kp                                    # Nome do job
-#SBATCH --output=substitution_kp_newEntrada03_%j.txt             # Nome do arquivo de saída
+#SBATCH --job-name=hill_kp                                    # Nome do job
+#SBATCH --output=exhaustive_kp_newEntrada03_%j.txt               # Nome do arquivo de saída
 #SBATCH --ntasks=8                                            # Número de tarefas (4 processos)
 #SBATCH --cpus-per-task=4                                     # Número de threads por tarefa (2 threads por processo)
 #SBATCH --mem=4096                                            # Memória total alocada por nó (1024 MB = 1 GB)
 #SBATCH --time=00:10:00                                       # Tempo máximo de execução (10 minutos)
 #SBATCH --partition=espec                                     # fila do cluster a ser utilizada
 
-./kp_substitution < newEntrada03.txt
-./kp_substitution < newEntrada03.txt
-./kp_substitution < newEntrada03.txt
-./kp_substitution < newEntrada03.txt
-./kp_substitution < newEntrada03.txt
-./kp_substitution < newEntrada03.txt
-./kp_substitution < newEntrada03.txt
-./kp_substitution < newEntrada03.txt
-./kp_substitution < newEntrada03.txt
-./kp_substitution < newEntrada03.txt
+./knapsack_problem < newEntrada03.txt

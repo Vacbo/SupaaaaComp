@@ -1,0 +1,30 @@
+Optimized random solution value: 40
+Selected items: 2 
+Elapsed time: 0.000032 seconds
+Optimized random solution value: 40
+Selected items: 2 
+Elapsed time: 0.000033 seconds
+Optimized random solution value: 112
+Selected items: 0 4 
+Elapsed time: 0.000035 seconds
+Optimized random solution value: 144
+Selected items: 0 1 
+Elapsed time: 0.000028 seconds
+Optimized random solution value: 144
+Selected items: 0 1 
+Elapsed time: 0.000024 seconds
+Optimized random solution value: 40
+Selected items: 2 
+Elapsed time: 0.000024 seconds
+Optimized random solution value: 40
+Selected items: 2 
+Elapsed time: 0.000023 seconds
+Optimized random solution value: 144
+Selected items: 0 1 
+Elapsed time: 0.000027 seconds
+Optimized random solution value: 156
+Selected items: 1 4 
+Elapsed time: 0.000027 seconds
+Optimized random solution value: 144
+Selected items: 0 1 
+Elapsed time: 0.000025 seconds
