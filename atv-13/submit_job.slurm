@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=omp_scheduler_test
-#SBATCH --output=output_omp_schedulers.txt
+#SBATCH --output=output_omp_schedulers_%j.txt
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --time=00:05:00

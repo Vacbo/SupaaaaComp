@@ -1,0 +1,1 @@
+Solution with both tasks and reduction: For 2147483648 steps, pi = 3.14159265358979 in 15.3156698718667 secs

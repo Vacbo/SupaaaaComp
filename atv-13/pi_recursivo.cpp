@@ -3,7 +3,7 @@
 #include <iomanip>
 static long num_steps = 1024l*1024*1024*2;
 
-#define MIN_BLK  1024*1024*256
+#define MIN_BLK 1024 * 1024 * 1024
 
 double sum = 0;
 
