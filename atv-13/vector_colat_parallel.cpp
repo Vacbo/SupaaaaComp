@@ -29,8 +29,9 @@ int main() {
     double end_time = omp_get_wtime();
     double population_time = end_time - start_time;
 
+    // Print the vector
     for (int i = 0; i < N; i++) {
-        std::cout << i << " ";
+        std::cout << vec[i] << " ";
     }
 
     std::cout << std::fixed << std::setprecision(6);

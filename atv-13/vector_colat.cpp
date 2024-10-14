@@ -24,12 +24,11 @@ int main() {
     double end_time = omp_get_wtime();
     double population_time = end_time - start_time;
 
-    // Print the indices
+    // Print the vector
     for (int i = 0; i < N; i++) {
-        std::cout << i << " ";
+        std::cout << vec[i] << " ";
     }
 
-    // Output the times
     std::cout << std::fixed << std::setprecision(6);
     std::cout << "\nTime taken to populate the vector: " << population_time << " seconds\n";
     return 0;
