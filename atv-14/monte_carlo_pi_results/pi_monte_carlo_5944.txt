@@ -1,0 +1,3 @@
+Estimated value of Pi: 3.1414088000
+Execution time: 0.054842 seconds
+Pi Accuracy: 99.9941477585%

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cstdlib>
+#include <random> 
 #include <ctime>
 #include <omp.h>
 #include <iomanip>
@@ -9,13 +9,14 @@ double estimatePi(int totalPoints) {
     int pointsInsideCircle = 0;
 
     // Seed the random number generator
-    std::srand(static_cast<unsigned int>(std::time(0)));
+    std::mt19937 rng(static_cast<unsigned int>(std::time(0)));
+    std::uniform_real_distribution<double> dist(0.0, 1.0);
 
     // Loop through the number of points
     for (int i = 0; i < totalPoints; ++i) {
         // Generate random points between 0 and 1 for x and y
-        double x = static_cast<double>(rand()) / RAND_MAX;
-        double y = static_cast<double>(rand()) / RAND_MAX;
+        double x = dist(rng);
+        double y = dist(rng);
 
         // Check if the point is inside the circle
         if (x * x + y * y <= 1) {
