@@ -1,0 +1,3 @@
+Process 1 received: Hello from process 0
+Process 1 sent: Hi to process 0
+Process 0 sent: Hello to process 1

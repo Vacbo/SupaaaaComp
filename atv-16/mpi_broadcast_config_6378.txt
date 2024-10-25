@@ -1,0 +1,5 @@
+Process 1 completed calculation with local sum: 500500
+Process 2 completed calculation with local sum: 501500
+Root process set iterations to 1000
+Process 0 completed calculation with local sum: 499500
+Process 3 completed calculation with local sum: 502500

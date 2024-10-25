@@ -1,0 +1,2 @@
+Root process initialized array with random values.
+Global average calculated from local averages: 49.4899

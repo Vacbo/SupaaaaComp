@@ -1,0 +1,6 @@
+Process 2 received: Message for process 2 from process 0
+Process 0 sent: Message for process 1 to process 1
+Process 0 sent: Message for process 2 to process 2
+Process 0 sent: Message for process 3 to process 3
+Process 3 received: Message for process 3 from process 0
+Process 1 received: Message for process 1 from process 0

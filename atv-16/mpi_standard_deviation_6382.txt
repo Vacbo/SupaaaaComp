@@ -1,0 +1,2 @@
+Root process initialized array with random values.
+Global standard deviation: 28.9121

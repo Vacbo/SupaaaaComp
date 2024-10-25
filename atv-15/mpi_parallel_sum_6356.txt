@@ -1,0 +1,7 @@
+Process 1 received sum: 0 from process 0
+Process 1 sent sum: 1 to process 2
+Process 0 sent sum: 0 to process 1
+Process 2 received sum: 1 from process 1
+Process 2 sent sum: 3 to process 3
+Process 3 received sum: 3 from process 2
+Process 3 (last process) has the total sum: 6
