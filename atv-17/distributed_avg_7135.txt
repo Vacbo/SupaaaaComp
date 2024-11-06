@@ -1,0 +1,1 @@
+Mean of the array: 500.500000
