@@ -1,0 +1,5 @@
+# Ignore .vscode settings, if using Visual Studio Code
+.vscode/
+
+# Ignore all .fa files (FASTA format files)
+*.fa

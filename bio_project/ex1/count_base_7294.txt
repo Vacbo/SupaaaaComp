@@ -1,0 +1,5 @@
+Base counts across all files:
+A: 763517118
+T: 764606176
+C: 511685713
+G: 511971484
