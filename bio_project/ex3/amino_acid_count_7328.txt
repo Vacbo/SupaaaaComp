@@ -1,2 +1,0 @@
-Total count of start codons (AUG) across all files: 25785550
-Total count of stop codons (UAA, UAG, UGA) across all files: 127956035

@@ -1,9 +1,0 @@
-Total Amino Acid Counts across all files:
-Serina: 81
-Prolina: 52
-Metionina (início): 11730774
-Valina: 131
-Unknown: 9488275
-Glutamina: 112
-Cisteína: 6797771
-Treonina: 23

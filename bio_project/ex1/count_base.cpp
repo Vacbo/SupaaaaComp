@@ -4,7 +4,7 @@
 #include <string>
 #include <mpi.h>
 #include <omp.h>
-#include <algorithm> // For std::transform
+#include <algorithm> 
 
 void count_bases(const std::string &sequence, int &countA, int &countT, int &countC, int &countG) {
     #pragma omp parallel for reduction(+:countA, countT, countC, countG)
