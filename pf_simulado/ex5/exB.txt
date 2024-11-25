@@ -1,0 +1,9 @@
+Pergunta: “Explique o que é escalonamento dinâmico em OpenMP e como ele pode ser vantajoso em aplicações de processamento de dados com variabilidade de carga entre as iterações.”
+
+Resposta:
+
+•	Escalonamento Dinâmico: Em OpenMP, o escalonamento dinâmico distribui as iterações de um loop para os threads de forma adaptativa, conforme eles terminam suas tarefas. Diferente do escalonamento estático, onde a divisão é fixa, o dinâmico redistribui trabalho em tempo de execução.
+
+•	Vantagens: É especialmente útil em situações onde o tempo de execução das iterações é desigual (variabilidade de carga). Isso evita que threads fiquem ociosos enquanto outros ainda estão processando, resultando em melhor balanceamento de carga e maior eficiência.
+
+•	Exemplo: Processamento de dados com tamanhos variáveis ou complexidades diferentes por iteração, como análise de grandes datasets heterogêneos.

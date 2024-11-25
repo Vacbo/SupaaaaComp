@@ -1,0 +1,21 @@
+Pergunta: “Descreva o modelo de memória compartilhada e memória distribuída, ressaltando seus prós e contras. Qual modelo cada uma das seguintes bibliotecas usa: OpenMP, MPI e Thrust?”
+
+Resposta:
+
+•	Memória Compartilhada: Neste modelo, todos os threads ou processos têm acesso ao mesmo espaço de memória. É comum em sistemas multicore, onde o acesso à memória principal é feito de forma cooperativa.
+
+•	Prós: Comunicação entre threads é rápida e direta, sem necessidade de envio explícito de dados.
+
+•	Contras: Problemas de concorrência (race conditions) e a necessidade de sincronização podem complicar o desenvolvimento.
+
+•	Exemplo: OpenMP utiliza memória compartilhada.
+
+•	Memória Distribuída: Cada processo possui seu próprio espaço de memória local, e a comunicação é feita através de mensagens explícitas.
+
+•	Prós: Escala bem para clusters grandes, com menor risco de problemas de concorrência.
+
+•	Contras: Comunicação entre processos é mais lenta e requer programação explícita para troca de dados.
+
+•	Exemplo: MPI utiliza memória distribuída.
+
+•	Thrust: Trabalha primariamente com memória compartilhada no contexto de GPUs, onde os blocos de threads compartilham memória. Porém, também pode ser combinado com MPI para ambientes híbridos.
