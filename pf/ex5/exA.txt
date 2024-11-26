@@ -1,0 +1,6 @@
+Pergunta: “Descreva com suas palavras o que é paralelismo, diferenciando-o do
+processamento sequencial. Relacione sua reposta com o conceito de escalabilidade.”
+
+Resposta:
+
+Paralelismo é realizar multiplas tarefas ao mesmo tempo, diferente do processamento sequencial que é realizar uma tarefa por vez e da concorencia que é alternar entre tarefas, para que elas acabem mais ou menos ao mesmo tempo. O paralelismo dentre essas 3 formas de processamento é o com mais relação a escalabilidade, pois é o que mais se beneficia de mais recursos, como mais "cores" de CPU ou GPU, pois ele os utiliza para realizar mais tarefas ao mesmo tempo.

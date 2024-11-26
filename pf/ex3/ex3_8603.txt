@@ -1,0 +1,3 @@
+Mean: 2 Greater: 3 Product: 6
+Mean: 5 Greater: 6 Product: 120
+Mean: 8 Greater: 9 Product: 504

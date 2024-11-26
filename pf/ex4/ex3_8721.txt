@@ -1,0 +1,1 @@
+/var/spool/slurmd/job08721/slurm_script: line 10: ./ex3: No such file or directory

@@ -1,0 +1,8 @@
+Pergunta: “O conceito de balanceamento de carga em computação paralela refere-
+se à distribuição equitativa do trabalho entre todos os processadores ou núcleos disponíveis
+em um sistema de computação paralelo. Por que é importante? Quais técnicas podem ser
+usadas para alcançar um balanceamento efetivo?”
+
+Resposta:
+
+O balanceamento de carga é importante, pois busca utilizar todos os processadores ou núcleos disponíveis em um sistema. Se um processador ou núcleo estiver ocioso, o tempo de execução do programa será maior do que se todos os processadores ou núcleos estivessem sendo utilizados. Mas também é importante que o balanceamento de carga não sobrecarregue um processador ou núcleo, se não, ira gerar um "bottleneck" no sistema. Por isso pode-se usar diferentes metodos de schedule, como static, dynamic, guided, auto, etc, para garantir um melhor balanceamento.

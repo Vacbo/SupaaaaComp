@@ -1,0 +1,3 @@
+Sum of vector elements: 6
+Sum of vector elements: 15
+Sum of vector elements: 24
