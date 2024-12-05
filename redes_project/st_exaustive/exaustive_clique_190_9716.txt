@@ -1,0 +1,4 @@
+Maximum Clique Size: 18
+Maximum Clique Nodes: 22 34 41 43 44 54 64 66 76 80 88 116 128 137 154 164 169 170 
+
+Time taken: 379.239769 seconds

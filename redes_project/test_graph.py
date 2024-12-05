@@ -1,23 +1,42 @@
 import networkx as nx
+import sys
 
-# Nome do arquivo de entrada
-nome_arquivo = "grafo.txt"
+def main():
+    # Check if the file path is provided as an argument
+    if len(sys.argv) < 2:
+        print(f"Usage: {sys.argv[0]} <path_to_graph_file>")
+        sys.exit(1)
 
-# Abrir o arquivo e pular a primeira linha
-with open(nome_arquivo, 'r') as arquivo:
-    next(arquivo)  # Pula a primeira linha
+    # File path from command-line argument
+    file_path = sys.argv[1]
 
-    # Lê o grafo a partir das linhas restantes
-    G = nx.parse_adjlist(arquivo)
+    # Open the file and skip the first line
+    try:
+        with open(file_path, 'r') as file:
+            next(file)  # Skip the first line
 
-# Encontrar todas as cliques maximais
-cliques_maximais = list(nx.find_cliques(G))
+            # Read the graph from the remaining lines
+            G = nx.parse_adjlist(file)
 
-# Encontrar a clique máxima (a maior)
-clique_maxima = max(cliques_maximais, key=len)
+    except FileNotFoundError:
+        print(f"Error: File not found at {file_path}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Error: Unable to read the file. {e}")
+        sys.exit(1)
 
-print("Cliques maximais encontradas:")
-for clique in cliques_maximais:
-    print(clique)
+    # Find all maximal cliques
+    maximal_cliques = list(nx.find_cliques(G))
 
-print("Clique máxima encontrada:", clique_maxima)
+    # Find the maximum clique (largest)
+    maximum_clique = max(maximal_cliques, key=len)
+
+    print("Maximal cliques found:")
+    for clique in maximal_cliques:
+        print(clique)
+
+    print("Maximum clique found:", maximum_clique)
+
+
+if __name__ == "__main__":
+    main()
