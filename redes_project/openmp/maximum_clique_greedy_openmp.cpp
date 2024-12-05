@@ -14,7 +14,7 @@ using namespace chrono;
 vector<vector<int>> readGraph(const string& filename, int& numVertices) {
     ifstream file(filename);
     if (!file) {
-        cerr << "Error: Cannot open the file!" << endl;
+        cerr << "Error: Cannot open the file at " << filename << endl;
         exit(1);
     }
 
@@ -71,8 +71,14 @@ vector<int> greedyClique(const vector<vector<int>>& graph, const vector<int>& ve
     return clique;
 }
 
-int main() {
-    string filename = "grafo.txt";
+int main(int argc, char** argv) {
+    // Ensure a file path is provided
+    if (argc < 2) {
+        cerr << "Usage: " << argv[0] << " <path_to_graph_file>" << endl;
+        return 1;
+    }
+
+    string filename = argv[1]; // Read the file path from command-line arguments
     int numVertices;
     vector<vector<int>> graph = readGraph(filename, numVertices);
 

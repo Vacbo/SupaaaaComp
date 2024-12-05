@@ -1,0 +1,3 @@
+Maximum Clique Size: 22
+Maximum Clique Nodes: 927 434 187 270 33 334 439 26 995 653 82 842 88 543 949 32 83 510 295 388 821 364 
+Time taken: 0.002779 seconds
