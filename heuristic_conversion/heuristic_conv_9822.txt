@@ -1,0 +1,17 @@
+Best Individual from the last generation (Fitness = 648):
+0 1 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 1 1 0 0 0 1 0 0 1 0 1 0 0 0 0 0 1 0 1 1 0 
+Selected items:
+Item 2 (W=2,V=63) Item 6 (W=12,V=90) Item 10 (W=9,V=82) Item 15 (W=6,V=41) Item 19 (W=7,V=48) Item 20 (W=12,V=10) Item 21 (W=3,V=14) Item 25 (W=1,V=28) Item 28 (W=2,V=93) Item 30 (W=12,V=33) Item 36 (W=4,V=18) Item 38 (W=15,V=33) Item 39 (W=15,V=95) 
+Total weight = 100
+
+Fitness over generations:
+Gen 0: Mean Fitness = 0, Max Fitness = 0
+Gen 100: Mean Fitness = 642.875, Max Fitness = 648
+Gen 200: Mean Fitness = 648, Max Fitness = 648
+Gen 300: Mean Fitness = 607.5, Max Fitness = 648
+Gen 400: Mean Fitness = 567, Max Fitness = 648
+Gen 500: Mean Fitness = 642.188, Max Fitness = 648
+Gen 600: Mean Fitness = 607.5, Max Fitness = 648
+Gen 700: Mean Fitness = 607.5, Max Fitness = 648
+Gen 800: Mean Fitness = 648, Max Fitness = 648
+Gen 900: Mean Fitness = 567, Max Fitness = 648
